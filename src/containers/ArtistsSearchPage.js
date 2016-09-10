@@ -1,7 +1,6 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
-import {searchForArtist} from '../actions/actions'
-import {bindActionCreators} from 'redux';
+import {searchForArtist} from '../actions/actions';
 
 class ArtistsSearch extends React.Component {
 
@@ -23,15 +22,15 @@ class ArtistsSearch extends React.Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        app: state.app
-    };
-}
+ArtistsSearch.propTypes = {
+    searchForArtist: PropTypes.func.isRequired,
+    app: PropTypes.object.isRequired
+};
 
-function mapDispatchToPros(dispatch) {
-    return {
-        searchForArtist: (term) => dispatch(searchForArtist(term))
-    }
-}
+let mapStateToProps = state => ({app: state.app});
+
+let mapDispatchToPros = dispatch => ({
+    searchForArtist: term => dispatch(searchForArtist(term))
+});
+
 export default connect(mapStateToProps, mapDispatchToPros)(ArtistsSearch);
