@@ -2,7 +2,7 @@ import * as types from '../constants/actionTypes';
 import ArtistsAPI from './../api/ArtistsAPI';
 
 export function searchForArtist(searchTerm) {
-    var api = new ArtistsAPI();
+    let api = new ArtistsAPI();
     return function (dispatch) {
         //set app state to show loading is in progress
         dispatch({type: types.SEARCH_ARTIST, searchTerm});
