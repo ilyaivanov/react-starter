@@ -1,4 +1,4 @@
-import {SAVE_FUEL_SAVINGS, CALCULATE_FUEL_SAVINGS} from '../constants/actionTypes';
+import {SEARCH_ARTIST, SAVE_FUEL_SAVINGS, CALCULATE_FUEL_SAVINGS} from '../constants/actionTypes';
 import calculator from '../utils/fuelSavingsCalculator';
 import objectAssign from 'object-assign';
 import initialState from './initialState';
@@ -9,27 +9,33 @@ import initialState from './initialState';
 // Note that I'm using Object.assign to create a copy of current state
 // and update values on the copy.
 export default function fuelSavingsReducer(state = initialState.fuelSavings, action) {
-  let newState;
+    let newState;
 
-  switch (action.type) {
-    case SAVE_FUEL_SAVINGS:
-      // For this example, just simulating a save by changing date modified.
-      // In a real app using Redux, you might use redux-thunk and handle the async call in fuelSavingsActions.js
-      return objectAssign({}, state, {dateModified: action.dateModified});
+    switch (action.type) {
+        case SAVE_FUEL_SAVINGS:
+            // For this example, just simulating a save by changing date modified.
+            // In a real app using Redux, you might use redux-thunk and handle the async call in fuelSavingsActions.js
+            return objectAssign({}, state, {dateModified: action.dateModified});
 
-    case CALCULATE_FUEL_SAVINGS:
-      newState = objectAssign({}, state);
-      newState[action.fieldName] = action.value;
-      newState.necessaryDataIsProvidedToCalculateSavings = calculator().necessaryDataIsProvidedToCalculateSavings(newState);
-      newState.dateModified = action.dateModified;
+        case CALCULATE_FUEL_SAVINGS:
+            newState = objectAssign({}, state);
+            newState[action.fieldName] = action.value;
+            newState.necessaryDataIsProvidedToCalculateSavings = calculator().necessaryDataIsProvidedToCalculateSavings(newState);
+            newState.dateModified = action.dateModified;
 
-      if (newState.necessaryDataIsProvidedToCalculateSavings) {
-        newState.savings = calculator().calculateSavings(newState);
-      }
+            if (newState.necessaryDataIsProvidedToCalculateSavings) {
+                newState.savings = calculator().calculateSavings(newState);
+            }
 
-      return newState;
-
-    default:
-      return state;
-  }
+            return newState;
+        case SEARCH_ARTIST:
+            newState = objectAssign({}, state);
+            var counter = newState.counter ? newState.counter+1 : 1;
+            newState.counter = counter;
+            newState.artistsSearchResults = counter + " IT WORKS!!!!111";
+            console.log('searching for an artist ' + newState.artistsSearchResults);
+            return newState;
+        default:
+            return state;
+    }
 }
