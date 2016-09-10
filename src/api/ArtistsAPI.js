@@ -1,5 +1,7 @@
 export default class ArtistsAPI {
     searchForArtists(term) {
+        //track if there are any pending requests
+        //if there are - abot old and trigger new
         return new Promise(function (resolve) {
             var delay = 1000;
 

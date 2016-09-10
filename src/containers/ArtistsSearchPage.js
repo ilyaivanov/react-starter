@@ -1,19 +1,15 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {searchForArtist} from '../actions/actions'
+import {bindActionCreators} from 'redux';
+
 class ArtistsSearch extends React.Component {
-
-    searchKeyPress(term) {
-        console.log(term)
-        this.props.dispatch(searchForArtist(term))
-        // this.props.dispatch(searchForArtist(term))
-        // this.props.searchForArtist(term);
-    }
-
 
     render() {
         return (<div>
-            <input type="text" onChange={e => this.searchKeyPress(e.target.value)} value={this.props.app.searchTerm}/>
+            <input type="text"
+                   onChange={e => this.props.searchForArtist(e.target.value)}
+                   value={this.props.app.searchTerm}/>
             <h2>Hello There</h2>
             <h3>{this.props.app.artistsSearchResults}</h3>
             <div>
@@ -27,9 +23,15 @@ class ArtistsSearch extends React.Component {
     }
 }
 
-function mapStateToProps(state){
+function mapStateToProps(state) {
     return {
         app: state.app
     };
 }
-export default connect(mapStateToProps)(ArtistsSearch);
+
+function mapDispatchToPros(dispatch) {
+    return {
+        searchForArtist: (term) => dispatch(searchForArtist(term))
+    }
+}
+export default connect(mapStateToProps, mapDispatchToPros)(ArtistsSearch);
