@@ -20,7 +20,7 @@ export default function fuelSavingsReducer(state = initialState, action) {
             if(newState.isLoadingArtists)
             {
                 newState.artists = [];
-                newState.searchTerm = action.term;
+                newState.searchTerm = action.searchTerm;
                 var counter = newState.counter ? newState.counter + 1 : 1;
                 newState.counter = counter;
             }

@@ -1,2 +1,1 @@
 export const SEARCH_ARTIST = 'SEARCH_ARTIST';
-export const ARTISTS_FOUND = 'ARTISTS_FOUND';

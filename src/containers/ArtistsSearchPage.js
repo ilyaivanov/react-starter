@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {searchForArtist} from '../actions/fuelSavingsActions'
+import {searchForArtist} from '../actions/actions'
 class ArtistsSearch extends React.Component {
 
     searchKeyPress(term) {
