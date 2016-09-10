@@ -9,7 +9,7 @@ import dateHelper from '../utils/dateHelper';
 import initialState from '../reducers/initialState';
 import rootReducer from '../reducers';
 
-describe('Store', () => {
+xdescribe('Store', () => {
   let dateModified;
   before(() => {
     MockDate.set(new Date());

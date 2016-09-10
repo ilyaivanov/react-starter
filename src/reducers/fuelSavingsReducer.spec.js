@@ -3,7 +3,7 @@ import * as ActionTypes from '../constants/actionTypes';
 import reducer from './fuelSavingsReducer';
 import dateHelper from '../utils/dateHelper';
 
-describe('Reducers::FuelSavings', () => {
+xdescribe('Reducers::FuelSavings', () => {
   const getInitialState = () => {
     return {
       newMpg: '',
